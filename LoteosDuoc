@@ -1,0 +1,176 @@
+class Loteo:
+    def __init__(self, filas, columnas):
+        self.filas = filas
+        self.columnas = columnas
+        self.lotes = [['D' for _ in range(columnas)] for _ in range(filas)]
+        self.clientes = []
+        self.antecedentes = [
+            {"lote": "2023_01", "tamaño": 1200, "precio": 15000000, "disponible": True},
+            {"lote": "2023_02", "tamaño": 1100, "precio": 13000000, "disponible": True},
+            {"lote": "2023_03", "tamaño": 1400, "precio": 17000000, "disponible": True},
+            {"lote": "2023_04", "tamaño": 1050, "precio": 12000000, "disponible": True},
+            {"lote": "2023_05", "tamaño": 1300, "precio": 16000000, "disponible": True},
+            {"lote": "2023_06", "tamaño": 1500, "precio": 18000000, "disponible": True},
+            {"lote": "2023_07", "tamaño": 1250, "precio": 14000000, "disponible": True},
+            {"lote": "2023_08", "tamaño": 1150, "precio": 13500000, "disponible": True},
+            {"lote": "2023_09", "tamaño": 1450, "precio": 16500000, "disponible": True},
+            {"lote": "2023_10", "tamaño": 1000, "precio": 12500000, "disponible": True},
+            {"lote": "2023_11", "tamaño": 1350, "precio": 15500000, "disponible": True},
+            {"lote": "2023_12", "tamaño": 1200, "precio": 15000000, "disponible": True},
+            {"lote": "2023_13", "tamaño": 1100, "precio": 13000000, "disponible": True},
+            {"lote": "2023_14", "tamaño": 1400, "precio": 17000000, "disponible": True},
+            {"lote": "2023_15", "tamaño": 1050, "precio": 12000000, "disponible": True},
+            {"lote": "2023_16", "tamaño": 1300, "precio": 16000000, "disponible": True},
+            {"lote": "2023_17", "tamaño": 1500, "precio": 18000000, "disponible": True},
+            {"lote": "2023_18", "tamaño": 1250, "precio": 14000000, "disponible": True},
+            {"lote": "2023_19", "tamaño": 1150, "precio": 13500000, "disponible": True},
+            {"lote": "2023_20", "tamaño": 1450, "precio": 16500000, "disponible": True},
+        ]
+
+    def mostrar_menu(self):
+        print("+---" + "----" * self.columnas + "+")
+        print("|   " + "    ".join(str(i) for i in range(self.columnas)) + "  |")
+        print("+---" + "----" * self.columnas + "+")
+
+        for i in range(self.filas):
+            print("| " + str(i) + " " + " | ".join(self.lotes[i]) + " |")
+            print("+---" + "----" * self.columnas + "+")
+
+        print("[1] Ver disponibilidad de lotes")
+        print("[2] Seleccionar un lote")
+        print("[3] Ver detalles del lote seleccionado")
+        print("[4] Ver Clientes")
+        print("[5] Salir")
+        print()
+
+    def ver_disponibilidad_lotes(self):
+        print("+---" + "----" * self.columnas + "+")
+        print("|   " + "    ".join(str(i) for i in range(self.columnas)) + "  |")
+        print("+---" + "----" * self.columnas + "+")
+
+        for i in range(self.filas):
+            print("| " + str(i) + " " + " | ".join(self.lotes[i]) + " |")
+            print("+---" + "----" * self.columnas + "+")
+
+    def seleccionar_lote(self):
+        print("+---" + "----" * self.columnas + "+")
+        print("|   " + "    ".join(str(i) for i in range(self.columnas)) + "  |")
+        print("+---" + "----" * self.columnas + "+")
+
+        for i in range(self.filas):
+            print("| " + str(i) + " " + " | ".join(self.lotes[i]) + " |")
+            print("+---" + "----" * self.columnas + "+")
+
+        fila = int(input("Ingrese el número de fila del lote: "))
+        columna = int(input("Ingrese el número de columna del lote: "))
+
+        if fila < 0 or fila >= self.filas or columna < 0 or columna >= self.columnas:
+            print("Coordenadas inválidas. Por favor, ingrese coordenadas dentro del rango válido.")
+            return
+
+        lote = self.lotes[fila][columna]
+        if lote == 'D':
+            rut = input("Ingrese su RUT: ")
+            nombre = input("Ingrese su nombre completo: ")
+            telefono = input("Ingrese su teléfono: ")
+            email = input("Ingrese su correo electrónico: ")
+
+            self.clientes.append({
+                'RUT': rut,
+                'Nombre': nombre,
+                'Teléfono': telefono,
+                'Email': email,
+                'Lote Comprado': f"{fila}-{columna}"
+            })
+
+            self.lotes[fila][columna] = 'X'
+
+            print("\nLote seleccionado con éxito.")
+        elif lote == 'X':
+            print("\nEl lote seleccionado no está disponible. Por favor, elija otro lote.")
+        else:
+            print("\nEl lote seleccionado no es válido.")
+
+        print()
+
+    def ver_detalles_lote(self):
+        print("+---" + "----" * self.columnas + "+")
+        print("|   " + "    ".join(str(i) for i in range(self.columnas)) + "  |")
+        print("+---" + "----" * self.columnas + "+")
+
+        for i in range(self.filas):
+            print("| " + str(i) + " " + " | ".join(self.lotes[i]) + " |")
+            print("+---" + "----" * self.columnas + "+")
+
+        fila = int(input("Ingrese el número de fila del lote: "))
+        columna = int(input("Ingrese el número de columna del lote: "))
+
+        if fila < 0 or fila >= self.filas or columna < 0 or columna >= self.columnas:
+            print("Coordenadas inválidas. Por favor, ingrese coordenadas dentro del rango válido.")
+            return
+
+        lote = self.lotes[fila][columna]
+        if lote == 'D':
+            print("\nEl lote seleccionado está disponible para la venta.")
+        elif lote == 'X':
+            lote_comprado = None
+            coordenadas = None
+            for cliente in self.clientes:
+                if cliente['Lote Comprado'] == f"{fila}-{columna}":
+                    lote_comprado = cliente
+                    coordenadas = f"({fila}, {columna})"
+                    break
+
+            if lote_comprado:
+                print("\nEl lote seleccionado ya ha sido vendido.")
+                print("Detalles del lote:")
+                print("Número de lote:", lote_comprado['Lote Comprado'])
+                print("RUT:", lote_comprado['RUT'])
+                print("Nombre:", lote_comprado['Nombre'])
+                print("Teléfono:", lote_comprado['Teléfono'])
+                print("Email:", lote_comprado['Email'])
+                print("Coordenadas:", coordenadas)
+            else:
+                print("\nError al encontrar el lote seleccionado. Por favor, inténtelo nuevamente.")
+        else:
+            print("\nEl lote seleccionado no es válido.")
+
+        print()
+
+    def ver_clientes(self):
+        if not self.clientes:
+            print("No se han registrado clientes.")
+        else:
+            print("Clientes:")
+            for cliente in self.clientes:
+                print("RUT:", cliente['RUT'])
+                print("Nombre:", cliente['Nombre'])
+                print("Teléfono:", cliente['Teléfono'])
+                print("Email:", cliente['Email'])
+                print("Lote Comprado:", cliente['Lote Comprado'])
+                print()
+
+        print()
+
+
+loteo = Loteo(4, 5)
+
+while True:
+    loteo.mostrar_menu()
+
+    opcion = input("Seleccione una opción: ")
+    print()
+
+    if opcion == '1':
+        loteo.ver_disponibilidad_lotes()
+    elif opcion == '2':
+        loteo.seleccionar_lote()
+    elif opcion == '3':
+        loteo.ver_detalles_lote()
+    elif opcion == '4':
+        loteo.ver_clientes()
+    elif opcion == '5':
+        break
+    else:
+        print("Opción inválida. Por favor, seleccione una opción válida.")
+        print()
